@@ -1,0 +1,5 @@
+I"U(function() {
+  this.Poll = angular.module('Poll', ["angles"]);
+
+}).call(this);
+:ET

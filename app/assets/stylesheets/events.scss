@@ -1,0 +1,54 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.rowEvent{
+  padding-left: 30%;
+}
+.cardEvent{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+	  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem
+}
+.cardEvent-body{
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.cardEvent-title{
+  margin-bottom: 0.75rem;
+}
+.cardEvent-footer{
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+#cardEvent_event{
+  padding-left: 10%;
+}
+#centerEvent_title{
+  padding-left: 45%;
+}
+.button_index_new{
+  padding-right: 15%;
+  float: right;
+}
+.mb-4{
+  margin-bottom: 2.5rem !important;
+}
+.cardEvent-text{
+  margin-bottom: 0;
+}
+
+.rowEv {
+  padding-left: 30%;
+  padding-right:6%; 
+}

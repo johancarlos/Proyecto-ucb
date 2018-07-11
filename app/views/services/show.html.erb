@@ -1,0 +1,60 @@
+<% if notice %>
+<div class="container">
+  <div class="alert alert-success">
+    <strong>
+      <center>
+        <p id="notice">
+          <%= notice %>
+        </p>
+      </center>
+    </strong>
+  </div>
+</div>
+<%end%>  
+
+<br>
+<br>
+
+<div class="containerService">
+
+	
+      <div class="bg-faded p-4 my-4">
+        <hr class="divider">
+        <h2 class="text-center"><strong> <%= @service.name %> </strong>
+        </h2>
+        <hr class="divider">
+
+		<img class="img-fluid float-left mr-4 d-none d-lg-block" alt="" <%= image_tag @service.image_url(:servicesIndex).to_s %>
+		  
+        <h4>
+					<%= simple_format (@service.description) %>
+				</h4>
+		
+      </div>
+
+</div>
+	<!-- /.container -->
+<div class="containerService">
+<% if user_signed_in? %>
+	<% if current_user.manageService? %>
+		<div class="rowShowService">
+			
+				<br>
+				<%= link_to 'Editar', edit_service_path(@service) ,:class => 'btn btn-warning' %>
+			
+		</div>
+
+		<div class="rowShowService">
+			
+				<br>
+				<%= link_to 'Eliminar', @service, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el servicio?' }, :class=>'btn btn-danger' %>
+			
+		</div>
+	<% end %>
+<% end %>
+
+<div class="rowShowService">
+		<br>
+		<%= link_to 'Atras', services_path ,:class => 'btn btn-warning'%>
+</div>
+</div>

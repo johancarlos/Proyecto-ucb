@@ -1,0 +1,36 @@
+<%= form_for([ @album, @video ], url:album_videos_path) do |form| %>
+
+<div class="container">
+  <div class="rowVideo">
+    <div class="col-sm-4">
+      <%= form.label :Titulo %>
+      <%= form.text_field(:title, {:class =>'form-control', :maxlength => "30"}) %>
+      <div style = "color: red;">
+        <%= @video.errors[:title].any? ? @video.errors[:title].to_s[/\w([^"]*)/] : "" %>
+      </div>
+      <br>
+     </div>
+  </div>
+</div>
+  
+<div class="container">
+  <div class="rowVideo">
+    <div class="col-sm-4">
+      <%= form.label :"Enlace de youtube"%>
+      <%= form.text_field(:link, {:class =>'form-control'})%>
+      <div style = "color: red;">
+        <%= @video.errors[:link].any? ? @video.errors[:link].to_s[/\w([^"]*)/] : "" %>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="rowVideo">
+    <div class="col-sm-4">
+      <%= form.submit "Guardar",:class=>"btn btn-primary" %>
+    </div>
+  </div>
+</div>
+<% end %>

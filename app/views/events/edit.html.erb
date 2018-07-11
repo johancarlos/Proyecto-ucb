@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+  <% if current_user.manageEvent == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<div class="container">
+  <div class="rowEv">  
+    <div class="col-sm-8">
+        <div class="well well-lg"><h1>Formulario para editar un Evento</h1></div>
+    </div>
+  </div>
+</div>
+<%= render 'form', event: @event %>
+
+<div class="container">
+  <div class="rowEv">  
+    <div  class="col-sm-4">
+        <br>
+        <%= link_to 'Atras', events_path ,:class=>"btn btn-warning"%>
+    </div>
+  </div>
+</div>

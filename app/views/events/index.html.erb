@@ -1,0 +1,45 @@
+
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+  </div>
+<%end%>   
+
+<div class="center" id="centerEvent_title">
+  <h1>
+    Eventos
+  </h1>
+  <% if user_signed_in? %>
+    <% if current_user.manageEvent? %>
+      <div class= "button_index_new">
+          <%= link_to 'Crear Evento', new_event_path, :class=>'btn btn-primary active' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+</br>
+</br>
+<% if @events.length ==0 %>
+  <div class="rowEv">
+    <div class="col-sm-8">
+      <div class="well well-sm">
+        <center>
+        <h2> Aún no existen Eventos </h2>
+        </center>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container" id="events">
+    <%= render @events %>
+  </div>
+<% end %>
+<%= will_paginate @events %>

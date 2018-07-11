@@ -1,0 +1,23 @@
+
+<div class="container">
+<div class="rowContestant">
+    <div class="col-sm-8">
+        <div class="well well-lg">
+            <h1> 
+                Crear un nuevo concursante
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+
+<%= render 'form', contestant: @contestant %>
+
+<div class="container">
+<div class="rowContestant">
+    <div class="col-sm-4">
+        <br>
+        <%= link_to 'Atras', contests_path ,:class => 'btn btn-warning'%>
+    </div>
+</div>
+</div>

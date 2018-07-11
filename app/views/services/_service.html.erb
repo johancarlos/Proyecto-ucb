@@ -1,0 +1,112 @@
+
+<% if @controladorServicesShow == true %>
+    <!-- Page Content -->
+    <section class="content-section-a">
+
+        <div class="container">
+        <div class="rowService">
+            <div class="col-lg-5 ml-auto h480">
+            <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+
+                <% if service.name.length > 52 %>
+                    <h2 class="section-heading"> <%= truncate(service.name, length: 52) %> </h2>
+                <% else %>
+                    <h2 class="section-heading"> <%= service.name %></h2>
+                <% end %>
+
+                <% if service.description.length > 400 %>
+                    <p > <%= truncate(service.description, length: 400, separator: ' ') %> </p>
+                <% else %>
+                    <p > <%= simple_format (service.description) %></p>
+                <% end %>
+        
+            </div>
+            <div class="col-lg-5 mr-auto">
+            
+                <% if service.image_url.to_s != nil %>
+                    <img class="img-fluid" alt="" <%= image_tag service.image_url(:servicesIndex).to_s %>
+                <% else %>
+                    <img src="https://www.ebosscanada.com/wp-content/uploads/2016/07/00_Slider_02.jpg" class="img-fluid" alt="" style="width:100%">
+                <% end %>
+           </div> 
+            </div>
+
+            
+            <div class="bottonsFooterA">
+                <div class="cardService-footer-a">
+                    <%= link_to 'Ver', service, method: :get, :class=>'btn btn-info' %>
+                    <% if user_signed_in? %>
+                    <% if current_user.manageService? %>
+                        <%= link_to 'Editar', edit_service_path(service), :class=>'btn btn-warning' %>
+                        <%= link_to 'Eliminar', service, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el servicio?' }, :class=>'btn btn-danger' %>
+                    <% end %>
+                    <% end %>
+                </div>
+            </div> 
+            
+        </div>
+
+        </div>
+        <!-- /.container -->
+    </section>
+
+    
+    <% @controladorServicesShow = false %>
+<% else %>
+
+        <section class="content-section-b">
+
+        <div class="container">
+        <div class="rowService">
+            <div class="col-lg-5 mr-auto order-lg-2 h480">
+            <hr class="section-heading-spacer">
+                <div class="clearfix"></div>
+
+                <% if service.name.length > 52 %>
+                    <h2 class="section-heading"> <%= truncate(service.name, length: 52) %> </h2>
+                <% else %>
+                    <h2 class="section-heading"> <%= service.name %></h2>
+                <% end %>
+
+                <% if service.description.length > 400 %>
+                    <p > <%= truncate(service.description, length: 400, separator: ' ') %> </p>
+                <% else %>
+                    <p > <%= simple_format (service.description) %></p>
+                <% end %>
+
+                                        
+
+            </div>
+
+            <div class="col-lg-5 ml-auto order-lg-1">
+                <% if service.image_url.to_s != nil %>
+                    <img class="img-fluid" alt="" <%= image_tag service.image_url(:servicesIndex).to_s %>
+                <% else %>
+                    <img src="https://www.ebosscanada.com/wp-content/uploads/2016/07/00_Slider_02.jpg" class="img-fluid" alt="" style="width:100%">
+                <% end %>
+            </div>
+            </div>
+
+            <div class="rowBotonesServicios">
+                <div class="cardService-footer-b">
+                    <%= link_to 'Ver', service, method: :get, :class=>'btn btn-info' %>
+                    <% if user_signed_in? %>
+                    <% if current_user.manageService? %>
+                        <%= link_to 'Editar', edit_service_path(service), :class=>'btn btn-warning' %>
+                        <%= link_to 'Eliminar', service, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el servicio?' }, :class=>'btn btn-danger' %>
+                    <% end %>
+                    <% end %>
+                </div>
+            </div>
+
+            
+
+        </div>
+        <!-- /.container -->
+
+    </section>
+    <!-- /.content-section-b -->
+
+    <% @controladorServicesShow = true %>
+<% end %>

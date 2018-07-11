@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+  <% if current_user.managePoll == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<div class="container">
+<div class="row" id="Ques">
+<div class="col-sm-12 text-center" id="left">
+    <div class="well well-lg" >
+        <h1> Nueva Encuesta</h1>
+    </div>
+</div>
+</div>
+
+
+<div ng-controller="QuestionController">
+  <%= form_for(@question, html: { name: "newQuestionForm" }) do |f| %>
+    <div class="row" id="Ques">
+    <div class="col-sm-6" id="left">
+      <%= f.label :Pregunta%>
+    <div class="field">
+      <%= f.text_field :title, :class => 'form-control', autocomplete: "off", placeholder: "Ingrese su pregunta", ng_model: "question", :maxlength => "150" %>
+    </div>
+    </div>
+    </div>
+
+    
+    <div class="row" id="Ques">
+    <div class="col-sm-6" id="left">
+    <%= f.label :Opciones%>
+    <div class="field" ng-repeat="option in options track by $index">
+      <%= text_field_tag "options[][title]", @option.title, :class => 'form-control', autocomplete: "off", placeholder: "Opción {{$index+1}}", ng_model: "options[$index]", ng_blur: "optionBlur($index, option)", :maxlength => "100" %>
+    </div>
+    </div>
+    </div>
+
+
+    
+
+    <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <br>
+    <div class="row" id="Ques">
+    <div class="col-sm-4" id="left">
+    <div class="actions">
+      <%= f.submit "Crear", ng_disabled: "formDisabled()", :class => 'btn btn-success' %>
+    </div>
+    <%= link_to 'Atras', admin_url,:class => 'btn btn-warning'%>
+    </div>
+    </div>
+
+    
+    
+  <% end %>
+</div>
+</div>

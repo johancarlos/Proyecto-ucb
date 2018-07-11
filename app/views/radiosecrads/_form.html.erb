@@ -1,0 +1,157 @@
+<%= form_with(model: radiosecrad, local: true) do |form| %>
+  <div class="form-group row has-success">
+  <div class="col-sm-3">
+    <%= form.label :Nombre_de_Programa, :for=>"inputHorizontalSuccess" %>
+    <br/>
+    <%= form.text_field(:progration,
+      {
+      :class=>'form-control form-control-success',
+      :maxlength => "40",
+      :placeholder => "Nombre del Programa",
+      :id=>"inputHorizontalSuccess"
+      }) %>
+      <!--<div class="form-control-feedback">Correcto!</div><-->
+    <div style="color: red;">
+      <%= @radiosecrad.errors[:progration].any? ? @radiosecrad.errors[:progration].to_s[/\w([^"]*)/] : ""%>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-3">
+  <%= form.label :Inicio %>
+  <br/>
+  <%= form.time_select(:schedule,
+    {:class=>'form-control',
+      :default => {:hour => '10', :minute => '30'}}) %>
+  <div style="color: red;">
+    <%= @radiosecrad.errors[:schedule].any? ? @radiosecrad.errors[:schedule].to_s[/\w([^"]*)/] : ""%>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+  <%= form.label :Detalles %>
+  <br/>
+  <%= form.text_area(:details,
+      {
+      :class=>'form-control',
+      :maxlength => "120",
+      :placeholder =>"Detalle del Programa"
+      })%>
+    <br/>
+
+  <div style="color: red;">
+    <%= @radiosecrad.errors[:details].any? ? @radiosecrad.errors[:details].to_s[/\w([^"]*)/] : ""%>
+  </div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-3">
+  <%= form.label :transmicion %>
+  <br/>
+
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input class="form-check-input" type="checkbox" value="Todos los dias" name="radiosecrad[transmition]" checked >
+        todos los dias
+      </label>
+    </div>
+      <br/>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia1" value="lunes" name="radiosecrad[transmition]" > Lunes
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia2" value="martes" name="radiosecrad[transmition]"> Martes
+        </label>
+      </div>
+      <div class="form-check form-check-inline disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia3" value="miercoles"  name="radiosecrad[transmition]" > Miercoles
+        </label>
+      </div>
+      <div class="form-check form-check-inline disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia4" value="jueves" name="radiosecrad[transmition]"> Jueves
+        </label>
+      </div>
+      <div class="form-check form-check-inline disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia5" value="viernes" name="radiosecrad[transmition]"> Viernes
+        </label>
+      </div>
+      <div class="form-check form-check-inline disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia6" value="sabado" name="radiosecrad[transmition]"> Sabado
+        </label>
+      </div>
+      <div class="form-check form-check-inline disabled">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" id="dia7" value="domingo" name="radiosecrad[transmition]"> Domingo
+        </label>
+      </div>
+
+      <br/>
+
+
+  <div style="color: red;">
+    <%= @radiosecrad.errors[:details].any? ? @radiosecrad.errors[:details].to_s[/\w([^"]*)/] : ""%>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">
+  <%= form.label :Fecha %>
+  <%= form.date_select(:datte,
+    {:class=>'form-control',
+      }) %>
+  <div style="color: red;">
+    <%= @radiosecrad.errors[:datte].any? ? @radiosecrad.errors[:datte].to_s[/\w([^"]*)/] : ""%>
+  </div>
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $("table td").each(function() {
+        var textoCelda = $(this).text();
+        if ($.trim(textoCelda) == '') {
+        }
+    });
+
+    $('#martes').click(function() {
+        $("table tr td").each(function() {
+            var celda = $.trim($(this).text());
+            if (/lunes/.test(celda)) {
+                $(this).parent().hide();
+            }
+        });
+    });
+    $('#miercoles').click(function() {
+        $("table tr td").each(function() {
+            var celda = $.trim($(this).text());
+            if (/martes/.test(celda)) {
+                $(this).parent().hide();
+            }
+        });
+    });
+
+});
+</script>
+
+
+<div class="row">
+<div class="col-sm-3">
+  <br/>
+<%= form.submit "guardar", :class=>"btn btn-success", :id=>"verDiasSeleccionados" %>
+</div>
+</div>
+<% end %>

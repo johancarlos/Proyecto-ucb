@@ -1,0 +1,224 @@
+
+// Place all the styles related to the Services controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.row {
+  padding-left: 30%;
+  padding-right:6%; 
+}
+.rowShowService{
+  padding-left: 25%;
+}
+.cardServcie {
+
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+	  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.h480{
+	height: 250px;
+}
+
+
+.cardService-body {
+  -ms-flex: 1 1 auto;
+	  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.cardService-title {
+  margin-bottom: 0.75rem;
+}
+
+.cardService-footer-a{
+  padding: 0.75rem 1.25rem;
+ 
+}
+
+.cardService-footer-b{
+  padding: 0.75rem 1.25rem;
+ 
+}
+
+#cardService_service{
+  padding-left: 10%;
+}
+#centerService_title{
+  padding-left: 46%;
+}
+.button_index_new{
+  padding-right: 15%;
+  float:right;
+}
+.mb-4 {
+  margin-bottom: 2.5rem !important;
+}
+
+.cardService-text {
+  margin-bottom: 0;
+}
+
+
+.content-section-a {
+  padding: 50px 0;
+  background-color: #f8f8f8;
+}
+
+
+.rowService {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.section-heading-spacer {
+  float: left;
+  width: 200px;
+  border-top: 3px solid #e7e7e7;
+  margin-bottom: 1px;
+}
+.space-image-service{
+  margin-top: 50px;
+}
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.content-section-b {
+  padding: 50px 0;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.order-lg-2 {
+  -ms-flex-order: 2;
+      order: 2;
+}
+
+.order-lg-1 {
+  -ms-flex-order: 1;
+      order: 1;
+}
+
+.col-lg-5{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.ml-auto,
+.mx-auto {
+  margin-left: auto !important;
+}
+
+.bottonsFooterA{
+  padding-left: 7.5%;
+}
+
+.rowBotonesServicios{
+  padding-left: 50%;
+}
+
+.rowMyService{
+  padding-left: 27%;
+}
+
+
+
+.containerService {
+  width: 100%;
+  padding-right: 20%;
+  padding-left: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 35%;
+}
+
+.bg-faded {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+.my-4 {
+  margin-top: 1.5rem !important;
+}
+
+hr.divider {
+  border-color: #292b2c;
+  max-width: 100%;
+  padding-left: 100%;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-lg {
+  font-size: 1.25rem;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.my-0 {
+  margin-top: 0 !important;
+}
+
+
+.float-left {
+  float: left !important;
+}
+
+.mr-4,
+.mx-4 {
+  margin-right: 1.5rem !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-lg-block {
+  display: block !important;
+}
+
+
+
+

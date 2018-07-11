@@ -1,0 +1,70 @@
+I"§(function() {
+  angular.module("Poll").controller("QuestionController", [
+    "$scope", function($scope) {
+      $scope.options = [];
+      $scope.question = "";
+      $scope.formDisabled = function() {
+        if ($scope.options.length === 0) {
+          return true;
+        }
+        if ($scope.options.length === 2) {
+          return true;
+        }
+        if ($scope.options.length === 1 && $scope.options[0] === "") {
+          return true;
+        }
+        if ($scope.options.length === 2 && $scope.options[0] === "" && $scope.options[1] === "") {
+          return true;
+        }
+        if ($scope.newQuestionForm.$invalid) {
+          return true;
+        }
+        if ($scope.question === "") {
+          return true;
+        }
+      };
+      $scope.setOption = function(id) {
+        $scope.option = id;
+        return setTimeout(function() {
+          return $scope.bindOptionEvent();
+        }, 1);
+      };
+      $scope.bindOptionEvent = function() {
+        return $scope.$watch("option", function() {
+          var nanobar;
+          nanobar = new Nanobar({
+            bg: "#27ae60"
+          });
+          nanobar.go(30);
+          return $.ajax({
+            url: "/votes.json",
+            type: "put",
+            dataType: "json",
+            data: {
+              "vote[option_id]": $scope.option,
+              "vote[question_id]": $("[name='vote[question_id]']").val()
+            },
+            success: function() {
+              return nanobar.go(100);
+            }
+          });
+        });
+      };
+      $scope.optionBlur = function($index, option) {
+        if (option === "") {
+          return $scope.options.splice($index, 1);
+        }
+      };
+      $scope.getOptions = function() {
+        return options;
+      };
+      return $scope.$watchCollection("options", function() {
+        if ($scope.options.slice(-1)[0] !== "") {
+          return $scope.options.push("");
+        }
+      });
+    }
+  ]);
+
+}).call(this);
+:ET

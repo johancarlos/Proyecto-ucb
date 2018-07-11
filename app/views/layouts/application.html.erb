@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="Poll"
+data-pusher-key="<%= ENV['PUSHER_KEY'] %>"
+data-pusher-host="<%= ENV['PUSHER_CLIENT_HOST'] %>"
+data-pusher-port="<%= ENV['PUSHER_CLIENT_PORT'] %>"
+data-pusher-port-ssl="<%= ENV['PUSHER_CLIENT_PORT_SSL'] %>"
+>
+  <head>
+    <title>SECRADTeamsecret</title>
+    <%= csrf_meta_tags %>
+  
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true">
+            
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         
+          <a class="navbar-brand" href="home" title="SECRAD">
+          
+          <img src="/assets/logo.png" width="80" height="35" class="d-inline-block align-top" alt="">
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li><%= link_to "Inicio", home_index_path,:"data-turbolinks" => false %></li>
+            <li><%= link_to "Quienes somos", aboutsecrads_path %></li>
+            <li><%= link_to "Servicios", services_path %></li>
+            <li><%= link_to "Eventos", events_path %></li>
+            <li><%= link_to "Concursos", contests_path %></li>
+            <li><%= link_to "Radio", radiosecrads_path %></li>
+            <li><%= link_to "Contactos", contacts_path %></li>
+            <li><%= link_to "Albumes", albums_path %></li>
+            <% if user_signed_in? %>
+              <% if current_user.managePoll? %>
+                <li><%= link_to "Encuestas", admin_url%></li>
+              <% end %>
+              <% if current_user.admin? %>
+                <li><%= link_to('Listar usuarios', users_index_path)  %></li>
+              <% end %>
+            <% end %>
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuario: <%= current_user.email %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to('Editar cuenta', edit_user_registration_path) %></li>
+                  <li><%= link_to('Cerrar sesión', destroy_user_session_path, method: :delete) %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li> <%= link_to('Iniciar sesión', new_user_session_path)  %></li>
+            <% end %>
+            
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <%= yield %>
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Servicio de radio y audiovisuales.</span>
+      </div>
+    </footer>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-55433223-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  </body>
+</html>

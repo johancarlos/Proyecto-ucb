@@ -1,0 +1,36 @@
+<div class="rowEvent" id="cardEvent_event">
+    <div class="col-md-4 mb-4">
+        <div class="cardEvent">
+        <div class="view overlay hm-white-slight">
+            <% if event.image_url.to_s != nil %>
+            <img class="img-responsive center-block" alt="" <%= image_tag event.image_url(:thumb).to_s %>
+            <% else %>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1P9vXN4QO5oGlFR0cU9o83bMjQB-2jZeQiqWAQE1_TBh3JLhxag" class="img-fluid" alt="" style="width:100%">
+            <% end %>
+        </div>
+        <div class="cardEvent-body">
+            <% if event.name.length > 27 %>
+            <h3 class="cardEvent-title"> <%= truncate(event.name, length: 27) %> </h3>
+            <% else %>
+            <h3 class="cardEvent-title"><%= event.name %></h3>
+            <% end %>
+
+            <% if event.description.length > 40 %>
+            <p class="cardEvent-text"><%= truncate(event.description, length: 40, separator: ' ') %> </p>
+            <% else %>
+            <p class="cardEvent-text"><%= truncate(event.description, length: 40, separator: ' ') %></p>
+            <% end %>
+
+        </div>
+        <div class="cardEvent-footer">
+            <%= link_to 'Mostrar', event,:class=>'btn btn-info' %>
+            <% if user_signed_in? %>
+            <% if current_user.manageEvent? %>
+                <%= link_to 'Editar', edit_event_path(event),:class=>'btn btn-warning' %>
+                <%= link_to 'Eliminar', event, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar el evento?' },:class=>'btn btn-danger' %>
+            <% end %>
+            <% end %>
+        </div>
+        </div>
+    </div>
+</div>

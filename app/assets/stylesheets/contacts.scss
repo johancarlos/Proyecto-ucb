@@ -1,0 +1,137 @@
+// Place all the styles related to the Contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+
+.col-lg-9{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+ }
+
+ .btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+  }
+  
+  .btn-outline-secondary:focus, .btn-outline-secondary.focus {
+    box-shadow: 0 0 0 3px rgba(134, 142, 150, 0.5);
+  }
+  
+  .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+    color: #868e96;
+    background-color: transparent;
+  }
+  
+  .btn-outline-secondary:active, .btn-outline-secondary.active,
+  .show > .btn-outline-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+  }
+
+  .my-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .cardContact {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    width: 100%;
+  }
+  
+  .card-header-contact {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .card-body-contact {
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+
+  #cardContactRow{
+    padding-left: 23%;
+    padding-right: 9%;
+  }
+
+  #contactCenter{
+    padding-left: 41%;
+  }
+  
+  #sectionNetwork{
+    height: 150px;
+    padding-left: 23%;
+    padding-right: 22%;
+  }
+
+  .rede{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-left: 20px;
+    transition: all 0.4s ease-in-out;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+
+  .redeAdmin{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin-left: 20px;
+    transition: all 0.4s ease-in-out;
+    border-radius: 50%;
+    margin-bottom: 73px;
+  }
+
+
+  .rede:hover{
+    cursor: pointer;
+    transform: translate(-5px);
+    box-shadow: 4px 30px 16px 0px rgba(50,50,50,0.45);
+  }
+  .redeAdmin:hover{
+    cursor: pointer;
+    transform: translate(-5px);
+    box-shadow: 4px 30px 16px 0px rgba(50,50,50,0.45);
+  }
+
+
+  .icone{
+    margin: 0px auto;
+    border-radius: 50%;
+  }
+
+  .myRowSocialNetworks{
+    padding-left: 4%;
+  }
+
+
+  hr.dividerContacts {
+    border-color: #292b2c;
+    max-width: 100%;
+    padding-left: 30%;
+  }
+
+  .rowConct {
+    padding-left: 20%;
+  }

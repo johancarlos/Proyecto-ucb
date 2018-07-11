@@ -1,0 +1,113 @@
+<% if user_signed_in? %>
+  <% if current_user.managePoll == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+
+<% if !user_signed_in? %>
+<script type="text/javascript">
+  window.location.href="/"
+</script>
+
+<% end %>
+
+
+
+<div class="container">
+<% if notice %>
+<div class="alert alert-success">
+  <strong>
+    <p id="notice">
+      <%= notice %>
+    </p>
+  </strong>
+</div>
+<% end %>
+<div class="col-lg-13 text-center">
+<div class="well well-lg">
+    <h2 class="section-heading">
+      Administración de Encuestas
+    </h2>
+</div>
+</div>
+
+<%= link_to 'Nueva Encuesta', new_question_path,:class => 'btn btn-primary',:"data-turbolinks" => false%>
+<br> </br>
+<%if @homes.first.showq == false %>
+<%= link_to 'Mostrar Encuesta', '#', :onclick => 'sum_fn0()', :class => 'btn btn-success' %>
+
+
+<% else %>
+  <%= link_to 'Ocultar encuesta', '#', :onclick => 'sum_fn1()', :class => 'btn btn-warning' %>
+<%end %>
+<br> </br>
+<table class="table table-bordered">
+  <thead>
+    <th>
+      Título de la encuesta              
+    </th>
+    <th>
+      Número de Opciones
+    </th>
+    <th>
+      Número de Votos
+    </th>
+    <th>
+      Eliminar
+    </th>
+  </thead>
+  <tbody>
+    <% if !@questions.first.nil? %>
+    <% @questions.each do | question | %>
+    <tr>
+      <td id="tdbug">
+        <%= link_to question.title, "/#{question.secret}/results", :"data-turbolinks" => false  %>
+        
+      </td>
+      <td>
+        <%= question.options.count %>
+      </td>
+      <td>
+        <%= question.votes.count %>
+      </td>
+      <td>
+        <%= link_to 'Eliminar', question, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar ?' },:class=>'btn btn-danger' %>
+      </td>
+      
+    </tr>
+    <% end %>
+    <%else %>
+      <tr>
+        <td>
+            <h5>
+              Aún no hay nada que mostrar
+            </h5>
+        </td>
+        <td>
+          <h5>
+            Aún no hay nada que mostrar
+          </h5>
+        </td>
+        <td>
+          <h5>
+            Aún no hay nada que mostrar
+          </h5>
+        </td>
+        <td>
+
+           <h5>
+            Aún no hay nada que mostrar
+          </h5>
+        </td>
+    
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+</div>

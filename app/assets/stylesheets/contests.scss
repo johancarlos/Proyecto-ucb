@@ -1,0 +1,80 @@
+// Place all the styles related to the Contests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.dateContest{
+    padding-right: 75%;
+}
+
+.containerContest {
+  width: 100%;
+  padding-right: 23%;
+  padding-left: 20%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.rowContest {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.bottonsContest{
+  padding-left: 0%;
+ 
+}
+
+.col-md-7{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.rounded {
+  border-radius: 0.25rem !important;
+}
+
+.mb-3,
+.my-3 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-md-0,
+.my-md-0 {
+  margin-bottom: 0 !important;
+}
+
+.col-md-5{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.rowBotonesContests{
+  padding-left: 59%;
+}
+
+.starrr {
+  display: inline-block; }
+  .starrr a {
+    font-size: 16px;
+    padding: 0 1px;
+    cursor: pointer;
+    color: #FFD119;
+    text-decoration: none; 
+}

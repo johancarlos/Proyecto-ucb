@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+  <% if current_user.manageAlbum == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<div class="container">
+  <div class="rowVideo">
+    <div class="col-sm-8">
+      <div class="well well-lg">
+        <h1>Nuevo video</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'form', video: @video %>
+
+<div class="container">
+  <div class="rowVideo">
+    <div class="col-sm-4">
+      <br>
+      <%= link_to 'Atras', album_path(params[:album_id], @album_video) ,:class => 'btn btn-warning'%>
+    </div>
+  </div>
+</div>

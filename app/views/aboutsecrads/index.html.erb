@@ -1,0 +1,96 @@
+
+<div class="container">
+<% if notice %>
+<div class="alert alert-success">
+  <strong>
+    <p id="notice">
+      <%= notice %>
+    </p>
+  </strong>
+</div>
+<% end %>
+<div class="rowAbout ">
+    <div class= rowAbout id="one">
+        <% if @aboutsecrads.first.image.blank? %>
+           
+            <img class="img-responsive" alt=""<%= image_tag("/assets/radiodefault.jpg") %>
+        <% else %>
+            <img class="img-responsive" alt=""<%= image_tag @aboutsecrads.first.image_url(:info).to_s%>
+        <% end %>
+    </div>
+    <% if user_signed_in? %>
+      <% if current_user.manageAboutsecrad? %>
+        <%= link_to 'Editar', edit_aboutsecrad_path(@aboutsecrads.first), :class=>'btn btn-warning' %>
+      <% end %> 
+    <% end %> 
+    <div class="rowAbout" id="two">
+        <div class="colll" id="col1">
+            <div class="abou card-outline-secondary my-4">
+                <div class="abou-header text-center">
+                    <h1>
+                        <p> 
+                            <strong> 
+                                <%= @aboutsecrads.first.title1 %> 
+                            </strong> 
+                        </p>
+                    </h1>
+                
+                </div>
+            
+                <div class="abou-body">
+                        
+                    <p id="pAb"> 
+                        <%= simple_format(@aboutsecrads.first.body1) %> 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="colll" id="col2">
+            <div class="abou card-outline-secondary my-4">
+                <div class="abou-header text-center">
+                    <h1>
+                        <p> 
+                            <strong> 
+                                <%= @aboutsecrads.first.title2 %> 
+                            </strong> 
+                        </p>
+                    </h1>
+                
+                </div>
+        
+                <div class="abou-body">
+                    
+                    <p id="pAb"> 
+                        <%= simple_format(@aboutsecrads.first.body2) %> 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="colll" id="col1">
+            <div class="abou card-outline-secondary my-4">
+                <div class="abou-header text-center">
+                    <h1>
+                        <p> 
+                            <strong> 
+                                <%= @aboutsecrads.first.title3 %> 
+                            </strong> 
+                        </p>
+                    </h1>
+                
+                </div>
+        
+                <div class="abou-body">
+                    
+                    <p id="pAb"> 
+                        <%= simple_format(@aboutsecrads.first.body3) %> 
+                    </p>
+                </div>
+            </div>
+    </div>
+    </div>
+
+
+
+
+</div>
+</div>

@@ -1,0 +1,41 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+  </div>
+<%end%>
+<p>
+  <strong>Progration:</strong>
+  <%= @radiosecrad.progration %>
+</p>
+
+<p>
+  <strong>Schedule:</strong>
+  <%= @radiosecrad.schedule %>
+</p>
+
+
+<p>
+  <strong>Details:</strong>
+  <%= @radiosecrad.details %>
+</p>
+
+<%if @radiosecrad.transmition=="miercoles" %>
+  <div class="">
+    <div class="">
+      <p>try - dia </p>
+    </div>
+  </div>
+<%end%>
+
+
+
+<%= link_to 'Edit', edit_radiosecrad_path(@radiosecrad) %> |
+<%= link_to 'Back', radiosecrads_path %>

@@ -1,0 +1,108 @@
+<%= form_for([ @contest, @contestant ], url:contest_contestants_path) do |form| %>
+
+  <div class="container">
+    <div class="rowContestant">
+      <div class="col-sm-4">
+        <%= form.label :Nombre%>
+        <%= form.text_field(:name, {:class => 'form-control', :maxlength => "100"}) %>
+        <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+        <div style = "color: red;">
+          <%= @contestant.errors[:name].any? ? @contestant.errors[:name].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="rowContestant">
+      <div class="col-sm-4">
+        <%= form.label :Apellido%>
+        <%= form.text_field(:lastname, {:class => 'form-control', :maxlength => "100"}) %>
+        <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+        <div style = "color: red;">
+          <%= @contestant.errors[:lastname].any? ? @contestant.errors[:lastname].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="rowContestant">
+      <div class="col-sm-4">
+      <%= form.label :Email %>
+        <%= form.text_field(:mail, {:class => 'form-control'}) %>
+        <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+        <div style = "color: red;">
+          <%= @contestant.errors[:mail].any? ? @contestant.errors[:mail].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="rowContestant">
+      <div class="col-sm-4">
+      <%= form.label :Celular %>
+        <%= form.text_field(:cellphone, {:class => 'form-control',  :maxlength => "8"}) %>
+        <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+        <div style = "color: red;">
+          <%= @contestant.errors[:cellphone].any? ? @contestant.errors[:cellphone].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%if @contest.typeContest=="Imagen" %>
+    <div class="container">
+      <div class="rowContestant">
+        <div class="col-sm-4">
+          <%= form.label :Imagen %>
+          <%= form.file_field :image %>
+          <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+          <div style = "color: red;">
+            <%= @contestant.errors[:image].any? ? @contestant.errors[:image].to_s[/\w([^"]*)/] : "" %>
+          </div>
+        </div>
+      </div>  
+    </div>
+  <%end%>
+
+  <%if @contest.typeContest=="Video" %>
+    <div class="container">
+        <div class="rowContestant">
+          <div class="col-sm-4">
+            <%= form.label :"Enlace de youtube"%>
+            <%= form.text_field(:video, {:class =>'form-control'})%>
+            <div style = "color: red;">
+              <%= @contestant.errors[:video].any? ? @contestant.errors[:video].to_s[/\w([^"]*)/] : "" %>
+            </div>
+            <br>
+          </div>
+        </div>
+    </div>
+  <%end%>
+
+  <%if @contest.typeContest=="Audio" %>
+    <div class="container">
+        <div class="rowContestant">
+          <div class="col-sm-4">
+            <%= form.label :"Enlace de youtube"%>
+            <%= form.text_field(:song, {:class =>'form-control'})%>
+            <div style = "color: red;">
+              <%= @contestant.errors[:song].any? ? @contestant.errors[:song].to_s[/\w([^"]*)/] : "" %>
+            </div>
+            <br>
+          </div>
+        </div>
+    </div>
+  <%end%>
+
+  <div class="container">
+    <div class="rowContestant">
+      <div class="col-sm-4">
+        <br>
+        <%= form.submit "Guardar",:class => 'btn btn-primary'%>
+      </div>
+    </div>
+  </div>
+<% end %>

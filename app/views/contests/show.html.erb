@@ -1,0 +1,94 @@
+
+<div class="containerContest">  
+  <% if notice %>
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      </strong>
+    </div>
+  <%end%>
+  <br><br><br>
+  <div class="rowContest">
+      <div class="col-md-7">
+        <img class="img-fluid rounded mb-3 mb-md-0" alt="" <%= image_tag @contest.image_url(:contestsIndex).to_s %>
+      </div>
+      <div class="col-md-5">
+
+        
+          <h2 > <%= @contest.name %></h2>
+          
+          <%if @contest.contest_winner.to_s.length != 0%>
+            <h3 >Ganador: <%= @contest.contest_winner %></h3>
+          <% else %>
+            
+          <% end %>
+
+          <p> Concuro de  <%= @contest.typeContest %> </p>
+
+          <hr style = "padding-left: 100%; border-color: #c3c3c3;">
+
+          <p> Del <%= @contest.date_start.strftime("%d/%m/%y") %>  al   <%= @contest.date_end.strftime("%d/%m/%y") %>
+          </p>
+
+          <hr style = "padding-left: 100%; border-color: #c3c3c3;">
+
+          <p>
+          <h3> Premios: </h3>
+          <%= simple_format (@contest.award) %>
+          </p>
+
+          <hr style = "padding-left: 100%; border-color: #c3c3c3;">   
+      </div>
+  </div>
+</div>
+      
+
+<div class="containerContest">  
+<br>
+<p > <%= simple_format (@contest.description) %></p>
+</div>
+
+<div class="containerService">
+	<% if user_signed_in? %>
+    <% if current_user.manageContest? %>
+      <%if @contest.contestants.length!=0 %>
+        <div class="bottonsContest">
+          
+            <br>
+            <%= link_to 'Mostrar Concursantes', contest_contestant_path(@contest,@contest.contestants.first), method: :get, :class=>'btn btn-info' %>
+          
+        </div>
+      <%end%>
+
+			<div class="bottonsContest">
+				
+					<br>
+					<%= link_to 'Editar', edit_contest_path(@contest) ,:class => 'btn btn-warning' %>
+				
+      </div>
+      
+      <div class="bottonsContest">
+				
+					<br>
+					<%= link_to 'Eliminar', @contest, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el concurso?' }, :class=>'btn btn-danger' %>
+				
+			</div>
+		<% end %>
+	<% end %>
+
+	<div class="bottonsContest">
+			<br>
+			<%= link_to 'Registrarse', new_contest_contestant_path(@contest),:class=>"btn btn-primary" %>
+  </div>
+  
+  <div class="bottonsContest">
+			<br>
+			<%= link_to 'Atras', contests_path ,:class => 'btn btn-warning'%>
+	</div>
+</div>
+
+

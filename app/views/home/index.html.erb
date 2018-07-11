@@ -1,0 +1,151 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <center>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </center>
+      <strong>
+    </div>
+  </div>
+<%end%>
+<body>
+  <div class="radio-bar">
+    <button id="btnradio" class="btn btn-primary" onclick="myFunction()">Escuchar en Vivo</button>
+    </div>
+  </div>
+
+
+  <section id="homecontainer">
+    <div class="container-head">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        </ol>
+
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="/assets/online-radio.jpg" onclick="myFunction()" alt="..." style="width:100%">
+            <div class="carousel-caption">
+              <h3>SECRAD RADIO UCB</h3> Radio online en vivo.
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/ucb2.jpg" alt="..." style="width:100%">
+            <div class="carousel-caption">
+              <h3>UNIVERSIDAD CATOLICA BOLIVIANA</h3>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/ucb3.jpg" alt="..." style="width:100%">
+            <div class="carousel-caption">
+              <h3>UNIVERSIDAD CATOLICA BOLIVIANA</h3>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/default.jpg" alt="..." style="width:100%">
+            <div class="carousel-caption">
+              <h3>UNIVERSIDAD CATOLICA BOLIVIANA</h3>
+            </div>
+          </div>
+          <div class="item">
+            <img src="/assets/ucb.jpg" alt="..." style="width:100%">
+            <div class="carousel-caption">
+              <h3>CONTACTO</h3>
+            </div>
+          </div>
+        </div>
+
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span ></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+
+<div id="pollAjax">
+  <div class ="container" >
+
+
+    <br>
+
+    <%if @homes.first.showq %>
+      <div class="text-center">
+        <div class="card-body">
+          <% if @questions.length == 0  %>
+            <div class="rowMyService">
+              <div class="col-sm-8">
+                <div class="well well-sm">
+                  <center>
+                    <h2>
+                      Aún no existen encuestas
+                    </h2>
+                  </center>
+                </div>
+              </div>
+            </div>
+          <% else %>
+
+            <div ng-controller="QuestionController" ng-init="setOption('<%= @vote.option_id %>')">
+              <div class="ques card-outline-secondary my-4">
+                <div class="ques-header">
+                  <h1>
+                    <%= @questions.last.title %>
+                  </h1>
+
+                </div>
+                <div class="ques-body">
+                  <%= form_tag "/votes", method: :put do |f| %>
+                    <%= hidden_field(:vote, :question_id, value: @questions.last.secret) %>
+
+                      <fieldset class="ques-body" >
+                        <% @questions.last.options.each do |option| %>
+                          <div class="form-check">
+                            <%= label_tag "vote_option_id_#{option.id}", class: "radio" do %>
+                              <%= radio_button("vote", "option_id", option.id, class: "visually-hidden", ng_model: "option") %><!--
+                              --><span class="outer"><span class="inner"></span></span><%= option.title %><!--
+                              --><% end %>
+                          </div>
+
+                        <% end %>
+                      </fieldset>
+                  <% end %>
+                  <small class="text-muted">
+                            <h5>
+
+                            </h5>
+                  </small>
+                </div>
+
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+</div>
+
+
+<script>
+function myFunction() {
+  var myWindow = window.open("/listen_page", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=450");
+    myWindow.document.title='.: Radio UCB en Vivo :.';
+}
+</script>
+
+
+  </html>

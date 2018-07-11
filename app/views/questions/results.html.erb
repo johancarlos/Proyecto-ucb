@@ -1,0 +1,64 @@
+<% if user_signed_in? %>
+  <% if current_user.managePoll == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+ 
+  <div ng-controller="ResultController" ng-init="setQuestion('<%= @question.secret %>')">
+    <div class="rowpoll">
+      <div class="col-poll col-left">
+      <div class="chart">
+        <header class="chart__header">
+        <div class="well well-lg text-center" id="wellpoll">
+          <h1>
+            <%= @question.title %>
+          </h1>
+          <br>
+        </div>
+          <% if params['presenter'] %>
+          <h2>
+            Vote at <pre class="vote-url">
+                      <%= options_url(@question.secret) %>
+                    </pre>
+          </h2>
+          <% end %>
+        
+        </header>
+        <article class="chart__main">
+          <div class="chart__main__container">
+            <div class="chart__main__container__container">
+              <canvas width="100" height="100"></canvas>
+            </div>
+          </div>
+        </article>
+
+    
+      </div>
+      </div>
+      <div class="col col-right">
+        <h2>
+          Votos
+        </h2>
+        <div ng-repeat="datum in chartData | orderBy:'value':true ">
+          <div class="swatch">
+            <div class="swatch__circle" ng-style="{'color': datum.color, 'border-color': datum.color}">
+              {{ datum.value }}
+            </div>
+            <span class="swatch__label" ng-style="{color: datum.color}">
+              <span class="swatch__label__text">{{ datum.label }}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= link_to 'Atras', admin_url,:class => 'btn btn-warning'%>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+
+<% if user_signed_in? %>
+  <% if current_user.manageAlbum == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+<script type="text/javascript">
+  window.location.href="/"
+</script>
+<% end %>
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+  <%end%>
+  <div class="center">
+    <div class="col-lg-12 text-center">
+      <div class="well well-lg">
+        <h2 class="section-heading">
+          <%= @album.name %>
+        </h2>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.manageAlbum? %>
+         
+        <% end %>
+      <% end %>
+      <div class="text-left">
+        <%= link_to 'Atras', album_path(@album), :class => 'btn btn-warning',:"data-turbolinks" => false  %>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+    <table class="table table-bordered">
+        <thead>
+            <th>
+            Nombre de Foto
+            </th>
+            <th>
+            Número de orden
+            </th>
+        
+        </thead>
+        <tbody class="sortable"> 
+        
+        <% if !@photos.first.nil? %>
+            <% sortable_fetch(@photos) do |photo, id_tag | %>
+                    <tr id="<%= id_tag %>">
+                    <td><%= photo.name %></td>
+                    <td><%= photo.sort %></td>
+                    
+                </tr>
+            <% end %>
+        <% else %>
+        <td>
+          <h5>
+            Aún no hay nada que mostrar
+          </h5>
+        </td>
+        <td>
+          <h5>
+            Aún no hay nada que mostrar
+          </h5>
+        </td>
+        <% end %>    
+        </tbody>
+    </table>
+    <table class="table table-bordered">
+    <thead>
+        <th>
+        Nombre de Video
+        </th>
+        <th>
+        Número de orden
+        </th>
+
+    </thead>
+    <tbody class="sortable"> 
+    <% if !@videos.first.nil? %>
+        
+        <% sortable_fetch(@videos) do |video, id_tag | %>
+                <tr id="<%= id_tag %>">
+                <td><%= video.title %></td>
+                <td><%= video.sort %></td>
+                
+            </tr>
+        <% end %>
+    <% else %>
+    <td>
+    <h5>
+      Aún no hay nada que mostrar
+    </h5>
+  </td>
+  <td>
+    <h5>
+      Aún no hay nada que mostrar
+    </h5>
+  </td>
+    <% end %>    
+    </tbody>
+</table>
+</div>  
+
+

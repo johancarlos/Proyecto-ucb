@@ -1,0 +1,96 @@
+<% if user_signed_in? %>
+  <% if current_user.admin == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+
+<div class="container">
+  <div class="col-lg-13 text-center">
+  <div class="well well-lg">
+      <h2 class="section-heading">
+        Usuarios
+      </h2>
+  </div>
+  </div>
+  
+  <%= link_to 'Nuevo usuario', new_user_registration_path, :class=>'btn btn-primary active' %>
+  <br/>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"> <center>Email</center> </th>
+        <th scope="col"> <center>Privilegios</center> </th>
+        <th scope="col"> <center>Editar</center> </th>
+        <th scope="col"> <center>Eliminar</center> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users = User.all %>
+      <% @users.each do |user| %>
+        <tr>
+          <td> <center> <%= user.email %> </center> </td>
+          <td>
+            <ul>
+              <% if user.admin? %>
+              <li>
+                Gestionar Usuarios
+              </li>
+              <% end %>
+              <% if user.manageService? %>
+              <li>
+                Gestionar Servicios
+              </li>
+              <% end %>
+              <% if user.manageEvent? %>
+              <li>
+                Gestionar Eventos
+              </li>
+              <% end %>
+              <% if user.manageContact? %>
+              <li>
+                Gestionar Contactos
+              </li>
+              <% end %>
+              <% if user.manageAlbum? %>
+              <li>
+                Gestionar Álbumes
+              </li>
+              <% end %>
+              <% if user.manageAboutsecrad? %>
+              <li>
+                Gestionar Quienes somos
+              </li>
+              <% end %>
+              <% if user.managePoll? %>
+              <li>
+                Gestionar Encuestas
+              </li>
+              <% end %>
+              <% if user.manageContest? %>
+              <li>
+                Gestionar Concursos
+              </li>
+              <% end %>
+              <% if user.manageRadio? %>
+              <li>
+                Gestionar Radio
+              </li>
+              <% end %>
+            </ul>
+          </td>
+          <% if user.id != 1 %>
+            <td> <%= link_to 'Editar', edit_user_path(user),:class=>'btn btn-warning' %> </td>
+            <td> <%= link_to "Eliminar", admin_destroy_user_path(user), method: :delete, data: { confirm: '¿Está seguro que desea eliminar el usuario ' + user.email + '?' }, :class=>'btn btn-danger' %> </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

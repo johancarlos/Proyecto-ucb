@@ -1,0 +1,77 @@
+<div> 
+  <%= form_with(model: aboutsecrad, local: true) do |form| %>
+
+    <div class="rowAbout" id="two">
+      <div class="colll" id="col1">
+        <div class="cardAbout card-outline-secondary">
+            <div class="card-header-about-form">
+                <p> <strong><%= form.text_field(:title1, {:class => 'form-control', :maxlength => "40"}) %> </strong> </p>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @aboutsecrad.errors[:title1].any? ? @aboutsecrad.errors[:title1].to_s[/\w([^"]*)/] : "" %>
+                </div>
+            </div>
+            <div class="card-body-about">
+                <p id="pAb"> <%= form.text_area(:body1, {:class => 'form-control', :maxlength => "1200"}) %> </p>
+                <div style = "color: red;">
+                  <%= @aboutsecrad.errors[:body1].any? ? @aboutsecrad.errors[:body1].to_s[/\w([^"]*)/] : "" %>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="colll" id="col2">
+        <div class="cardAbout card-outline-secondary">
+            <div class="card-header-about-form">
+            <p> <strong><%= form.text_field(:title2, {:class => 'form-control', :maxlength => "40"}) %> </strong> </p>
+                <div style = "color: red;">
+                <%= @aboutsecrad.errors[:title2].any? ? @aboutsecrad.errors[:title2].to_s[/\w([^"]*)/] : "" %>
+              </div>
+            </div>
+            <div class="card-body-about">
+                
+                <p id="pAb"> <%= form.text_area(:body2, {:class => 'form-control', :maxlength => "1200"}) %></p>
+                <div style = "color: red;">
+                  <%= @aboutsecrad.errors[:body2].any? ? @aboutsecrad.errors[:body2].to_s[/\w([^"]*)/] : "" %>
+                </div>
+                  
+            </div>
+        </div>
+      </div>
+      <div class="colll" id="col3">
+        <div class="cardAbout card-outline-secondary">
+            <div class="card-header-about-form">
+            <p> <strong><%= form.text_field(:title3, {:class => 'form-control', :maxlength => "40"}) %> </strong> </p>
+                <div style = "color: red;">
+                <%= @aboutsecrad.errors[:title3].any? ? @aboutsecrad.errors[:title3].to_s[/\w([^"]*)/] : "" %>
+              </div>
+            </div>
+            <div class="card-body-about">
+                
+                <p id="pAb"> <%= form.text_area(:body3, {:class => 'form-control', :maxlength => "1200"}) %> </p>
+                <div style = "color: red;">
+                  <%= @aboutsecrad.errors[:body3].any? ? @aboutsecrad.errors[:body3].to_s[/\w([^"]*)/] : "" %>
+                </div>
+
+                
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <%= form.label :imagen %>
+        <%= form.file_field :image, id: :aboutsecrad_image %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-4">
+        <br>
+        <%= form.submit "Guardar",:class => 'btn btn-primary'%>
+      </div>
+    </div>
+    
+    
+  <% end %>
+ </div> 

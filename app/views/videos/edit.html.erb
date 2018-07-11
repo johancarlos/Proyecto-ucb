@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <% if current_user.manageAlbum == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<div class="row">
+<div class="col-sm-8">
+  <div class="well well-lg"><h1>Editar Video</h1></div>
+</div>
+</div>
+
+<%= render 'form', video: @video %>
+<div class="row">
+    <div class="col-sm-4">
+        <br>
+        <%= link_to 'Atras', @album,:class => 'btn btn-warning'%>
+    </div>
+</div>

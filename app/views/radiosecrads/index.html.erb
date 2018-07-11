@@ -1,0 +1,779 @@
+<div class="container">
+<% if notice %>
+  
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+ 
+<%end%>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+
+    <div >
+        <div class="text-center">
+        <h1>Radio UCB</h1>
+        </div>
+        
+        <div class="text-right">
+            <div >
+                
+                <button class="btn btn-primary" onclick="myFunction()">Escuchar en Vivo</button>
+                </br>
+                </br>
+                <% if user_signed_in? %>
+                    <% if current_user.manageRadio? %>
+                        <div >
+                            <%= link_to 'Agregar programa', new_radiosecrad_path,:class=>"btn btn-primary" %>
+                            <br>
+                            
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+
+
+
+
+
+
+<br/>
+
+<script>
+    function myFunction() {
+    var myWindow = window.open("/listen_page", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=600,height=450");
+    myWindow.document.title='.: Radio UCB en Vivo :.';
+}
+</script>
+
+
+<div class="text-center">
+  <h3>PROGRAMACION RADIO UCB</h3>
+  <h4></h4>
+  <br>
+  <ul id="mytabs" class="nav nav-pills text-center">
+    <li class="active"><a href="#lunes" data-toggle="pill">Lunes</a></li>
+    <li id="tabmartes"><a href="#martes" data-toggle="pill">Martes</a></li>
+    <li id="tabmiercoles" ><a href="#miercoles" data-toggle="pill">Miercoles</a></li>
+    <li id="tabjueves"><a href="#jueves" data-toggle="pill">Jueves</a></li>
+    <li id="tabviernes"><a href="#viernes" data-toggle="pill">Viernes</a></li>
+    <li id="tabsabado" ><a href="#sabado" data-toggle="pill">Sabado</a></li>
+    <li id="tabdomingo"><a href="#domingo" data-toggle="pill">Domingo</a></li>
+
+  </ul>
+  <div   id="tab" class="tab-content">
+    <div id="lunes" class="tab-pane fade in active">
+      <h3>Lunes</h3>
+
+      <table id="tablelunes"  class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+            <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            
+            <tr id="dayclass" for="try">
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+            <td>
+            <h5>
+            Aún no hay nada que mostrar
+            </h5>
+            </td>
+            <td>
+            <h5>
+            Aún no hay nada que mostrar
+            </h5>
+            </td>
+            <td>
+            <h5>
+            Aún no hay nada que mostrar
+            </h5>
+            </td>
+            <td>
+            <h5>
+            Aún no hay nada que mostrar
+            </h5>
+            </td>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $("table td").each(function() {
+            var textoCelda1 = $(this).text();
+            if ($.trim(textoCelda1) == '') {
+            }
+        });
+
+        $('#tablunes').ready(function() {
+            $("#tablelunes tr td").each(function() {
+                var celda1 = $.trim($(this).text());
+
+                if (/lunes/.test(celda1)) {
+                    $(this).parent().show();
+                }
+                if (/martes/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+                if (/miercoles/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+                if (/jueves/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+                if (/viernes/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+                if (/sabado/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+                if (/domingo/.test(celda1)) {
+                    $(this).parent().hide();
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
+    <div id="martes" class="tab-pane fade">
+      <h3>Martes</h3>
+      <table id="tablemartes" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr id="dayclass2">
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#tabmartes').ready(function() {
+            $("#tablemartes tr td").each(function() {
+                var celda2 = $.trim($(this).text());
+
+                if (/martes/.test(celda2)) {
+                    $(this).parent().show();
+                }
+                if (/lunes/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+                if (/miercoles/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+                if (/jueves/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+                if (/viernes/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+                if (/sabado/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+                if (/domingo/.test(celda2)) {
+                    $(this).parent().hide();
+                }
+
+            });
+        });
+    });
+    </script>
+
+    <div id="miercoles" class="tab-pane fade">
+      <h3>Miercoles</h3>
+      <table id="tablemiercoles" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr>
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#tabmiercoles').ready(function() {
+            $("#tablemiercoles tr td").each(function() {
+                var celda3 = $.trim($(this).text());
+                if (/lunes/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+                if (/martes/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+                if (/miercoles/.test(celda3)) {
+                    $(this).parent().show();
+                }
+                if (/jueves/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+                if (/viernes/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+                if (/sabado/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+                if (/domingo/.test(celda3)) {
+                    $(this).parent().hide();
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
+    <div id="jueves" class="tab-pane fade">
+      <h3>Jueves</h3>
+      <table id="tablejueves" class="table table-bordered" id= "tablebug">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Tansmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr>
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+        <script>
+        $(document).ready(function() {
+            $('#tabjueves').ready(function() {
+                $("#tablejueves tr td").each(function() {
+                    var celda4 = $.trim($(this).text());
+                    if (/lunes/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                    if (/martes/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                    if (/miercoles/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                    if (/jueves/.test(celda4)) {
+                        $(this).parent().show();
+                    }
+                    if (/viernes/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                    if (/sabado/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                    if (/domingo/.test(celda4)) {
+                        $(this).parent().hide();
+                    }
+                });
+            });
+        });
+        </script>
+
+    <div id="viernes" class="tab-pane fade">
+      <h3>Viernes</h3>
+      <table id="tableviernes" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr>
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+        <script>
+        $(document).ready(function() {
+            $('#tabviernes').ready(function() {
+                $("#tableviernes tr td").each(function() {
+                    var celda5 = $.trim($(this).text());
+                    if (/lunes/.test(celda5)) {
+                        $(this).parent().hide();
+                    }
+                    if (/martes/.test(celda5)) {
+                        $(this).parent().hide();
+                    }
+                    if (/miercoles/.test(celda5)) {
+                        $(this).parent().show();
+                    }
+                    if (/jueves/.test(celda5)) {
+                        $(this).parent().hide();
+                    }
+                    if (/viernes/.test(celda5)) {
+                        $(this).parent().show();
+                    }
+                    if (/sabado/.test(celda5)) {
+                        $(this).parent().hide();
+                    }
+                    if (/domingo/.test(celda5)) {
+                        $(this).parent().hide();
+                    }
+                });
+            });
+        });
+        </script>
+
+    <div id="sabado" class="tab-pane fade">
+      <h3>Sabado</h3>
+      <table id="tablesabado" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+           <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr>
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+             
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#tabsabado').ready(function() {
+            $("#tablesabado tr td").each(function() {
+                var celda6 = $.trim($(this).text());
+                if (/lunes/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+                if (/martes/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+                if (/miercoles/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+                if (/jueves/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+                if (/viernes/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+                if (/sabado/.test(celda6)) {
+                    $(this).parent().show();
+                }
+                if (/domingo/.test(celda6)) {
+                    $(this).parent().hide();
+                }
+            });
+        });
+    });
+    </script>
+
+
+    <div id="domingo" class="tab-pane fade">
+      <h3>Domingo</h3>
+      <table id="tabledomingo" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Hora Inicio</th>
+            <th>Programa</th>
+            <th>Detalles</th>
+            <th>Transmicion</th>
+            <% if user_signed_in? %>
+            <th>
+            </th>
+            <th> 
+            </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if !@radiosecrads.first.nil? %>
+          <% @radiosecrads.each do |radiosecrad| %>
+            <tr>
+
+              <td><%= radiosecrad.schedule.to_time.strftime('%l:%M %p') %></td>
+              <td><%= radiosecrad.progration %></td>
+              <td id="tdbug"><%= radiosecrad.details %></td>
+              <td><%= radiosecrad.transmition %></td>
+              
+              <% if user_signed_in? %>
+                <% if current_user.manageRadio? %>
+                    <td><%= link_to 'Editar', edit_radiosecrad_path(radiosecrad), :class=>"btn btn-warning" %></td>
+                    <td><%= link_to 'Eliminar', radiosecrad, method: :delete, data: { confirm: 'Esta seguro?' }, :class=>"btn btn-danger" %></td>
+                <% end %>
+              <%end%>
+            </tr>
+          <% end %>
+          <% else %>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <td>
+          <h5>
+          Aún no hay nada que mostrar
+          </h5>
+          </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <script>
+    $(document).ready(function() {
+        $('#tabdomingo').ready(function() {
+            $("#tabledomingo tr td").each(function() {
+                var celda7 = $.trim($(this).text());
+                if (/lunes/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/martes/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/miercoles/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/jueves/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/viernes/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/sabado/.test(celda7)) {
+                    $(this).parent().hide();
+                }
+                if (/domingo/.test(celda7)) {
+                    $(this).parent().show();
+                }
+            });
+        });
+    });
+    </script>
+
+  </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<style media="screen">
+  
+  
+
+  h2{
+    text-align: left;
+  }
+  h1{
+
+    text-align: center;
+  }
+
+  #tablecomplete{
+    
+    padding: 0;
+  }
+  #tab{
+    margin: 10px 20px 20px 50px;
+    padding: 0;
+  }
+
+
+  .escuchar{
+    margin:0px 200px 0 0;
+    padding: 0;
+    float: right;
+    display: inline-block;
+    text-align: right;
+  }
+
+</style>
+
+<br>

@@ -1,0 +1,67 @@
+<%= form_with(model: contact, local: true) do |form| %>
+
+
+            <div class="form-group">
+              <%= form.label :Area %>
+              <div class="input-group">
+                <%= form.text_field(:area, {:class => 'form-control',  :maxlength => "100"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @contact.errors[:area].any? ? @contact.errors[:area].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :Nombre %>
+              <div class="input-group">
+                <%= form.text_field(:name, {:class => 'form-control',  :maxlength => "100"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @contact.errors[:name].any? ? @contact.errors[:name].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="form-group">
+              <%= form.label :Email %>
+              <div class="input-group">
+                <%= form.text_field(:email, {:class => 'form-control',  :maxlength => "150"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @contact.errors[:email].any? ? @contact.errors[:email].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-group">
+              <%= form.label :Celular %>
+              <div class="input-group">
+                <%= form.text_field(:cellPhone, {:class => 'form-control',  :maxlength => "8"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @contact.errors[:cellPhone].any? ? @contact.errors[:cellPhone].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :"Número de Interno" %>
+              <div class="input-group">
+                <%= form.text_field(:inter, {:class => 'form-control',  :maxlength => "6"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @contact.errors[:inter].any? ? @contact.errors[:inter].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+            
+
+            <%= form.submit "Guardar",:class => 'btn btn-success'%>
+
+<% end %>

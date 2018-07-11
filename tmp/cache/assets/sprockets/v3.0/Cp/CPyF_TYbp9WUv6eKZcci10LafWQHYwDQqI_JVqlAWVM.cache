@@ -1,0 +1,25 @@
+I"Â(function() {
+  angular.module("Poll").directive("uniqueSecret", [
+    "$http", function($http) {
+      return {
+        require: "ngModel",
+        link: function(scope, ele, attrs, c) {
+          return scope.$watch(attrs.ngModel, function() {
+            if (attrs.uniqueSecret === "") {
+              return c.$setValidity("unique", true);
+            } else {
+              return $http({
+                method: "GET",
+                url: "/availability/" + attrs.uniqueSecret
+              }).success(function(data, status, headers, cfg) {
+                return c.$setValidity("unique", data.available);
+              });
+            }
+          });
+        }
+      };
+    }
+  ]);
+
+}).call(this);
+:ET

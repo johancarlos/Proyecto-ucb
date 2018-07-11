@@ -1,0 +1,102 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-4">
+        <%= form.label :Nombre %>
+        <%= form.text_field(:name, {:class=>'form-control', :maxlength=>"80"}) %>
+        <div style="color: red;">
+          <%= @event.errors[:name].any? ? @event.errors[:name].to_s[/\w([^"]*)/] : ""%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-4">
+        <%= form.label :Descripción %>
+        <%= form.text_area(:description,{:class=>'form-control', :maxlength=>"1024"}) %>
+        <div style="color: red;">
+          <%= @event.errors[:description].any? ? @event.errors[:description].to_s[/\w([^"]*)/] : ""%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-8">
+        <%= form.label :Fecha_inicio  %>
+        <br/>
+        <%= form.text_field :date, data:{behaviour:'datepicker'} %>
+        <div style = "color: red;">
+          <%= @event.errors[:date].any? ? @event.errors[:date].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+      <div class="rowEv">
+        <div class="col-sm-8">
+          <%= form.label :Fecha_fin  %>
+        <br/>
+        <%= form.text_field :date_end, data:{behaviour:'datepicker'} %>
+        <div style = "color: red;">
+          <%= @event.errors[:date_end].any? ? @event.errors[:date_end].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-4">
+        <%= form.label :Imagen %>
+        <%= form.file_field :image %>
+        <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+        <div style = "color: red;">
+          <%= @event.errors[:image].any? ? @event.errors[:image].to_s[/\w([^"]*)/] : "" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-8">
+        <%= form.label :Lugar %>
+        <%= form.text_field(:place,{:class=>'form-control', :maxlength=>"80"}) %>
+        <div style="color:red">
+          <%= @event.errors[:place].any? ? @event.errors[:place].to_s[/\w([^"]*)/] : ""%>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="rowEv">
+      <div class="col-sm-4">
+        <br>
+        <%= form.submit "Guardar" ,:class=>"btn btn-success"%>
+      </div>
+    </div>    
+  </div>
+  
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker({
+      format: "yyyy/mm/dd",
+      weekStart: 1,
+      maxViewMode: 0,
+      todayBtn: "linked",
+      clearBtn: true,
+      language: "es",
+      forceParse: false,
+      calendarWeeks: true,
+      autoclose: true
+    });
+  })
+</script>

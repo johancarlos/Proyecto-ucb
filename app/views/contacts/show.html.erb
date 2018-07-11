@@ -1,0 +1,106 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <center>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </center>
+      </strong>
+    </div>
+  </div>
+<%end%>  
+
+
+<br>
+<br>
+  <div class="rowEv">
+    <div class="col-sm-8">
+    	<div class="well well-sm">
+  			<center>
+  				<h2> <%= @contact.area %> </h2>
+  			</center>
+  		</div>
+    </div>
+  </div>
+
+  <div class="rowEv">
+    <div class="col-sm-8">
+    	<blockquote>
+    		<h4>
+    			<%= @contact.name %>
+    		</h4>
+    	</blockquote>
+    </div>
+  </div>
+
+  <div class="rowEv">
+    <div class="col-sm-8">
+    	<blockquote>
+    		<h4>
+        Email:  
+        <%= @contact.email %>
+    		</h4>
+    	</blockquote>
+    </div>
+  </div>
+
+  <div class="rowEv">
+    <div class="col-sm-8">
+    	<blockquote>
+    		<h4>
+        Celular:  
+        <%= @contact.cellPhone %>
+    		</h4>
+    	</blockquote>
+    </div>
+  </div>
+  
+	<div class="rowEv">
+    <div class="col-sm-8">
+    	<blockquote>
+    		<h4>
+        Interno:  
+        <%= @contact.inter %>
+    		</h4>
+    	</blockquote>
+    </div>
+  </div>
+
+	<% if user_signed_in? %>
+		<% if current_user.manageContact? %>
+		
+			<div class="rowEv">
+					<div class="col-sm-8">
+						<br>
+						<%= link_to 'Editar', edit_contact_path(@contact) ,:class => 'btn btn-warning' %>
+					</div>
+			</div>
+		
+		
+		
+			<div class="rowEv">
+					<div class="col-sm-8">
+						<br>
+						<%= link_to 'Eliminar', @contact, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el contacto?' }, :class=>'btn btn-danger' %>
+					</div>
+			</div>
+		<% end %>
+	<% end %>
+
+
+<div class="rowEv">
+		<div class="col-sm-8">
+			<br>
+			<%= link_to 'Atras', contacts_path ,:class => 'btn btn-warning'%>
+		</div>
+</div>
+
+
+<div class="rowEv">
+<div class="col-sm-8">
+	<br><br><br><br><br>
+
+</div>
+</div>

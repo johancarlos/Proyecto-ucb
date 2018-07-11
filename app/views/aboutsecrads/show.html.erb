@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+  <% if current_user.manageAboutsecrad == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @aboutsecrad.image %>
+  <%= @aboutsecrad.image %>
+</p>
+
+<p>
+  <strong>Title1:</strong>
+  <%= @aboutsecrad.title1 %>
+</p>
+
+<p>
+  <strong>Body1:</strong>
+  <%= @aboutsecrad.body1 %>
+</p>
+
+<p>
+  <strong>Title2:</strong>
+  <%= @aboutsecrad.title2 %>
+</p>
+
+<p>
+  <strong>Body2:</strong>
+  <%= @aboutsecrad.body2 %>
+</p>
+
+<p>
+  <strong>Title3:</strong>
+  <%= @aboutsecrad.title3 %>
+</p>
+
+<p>
+  <strong>Body3:</strong>
+  <%= @aboutsecrad.body3 %>
+</p>
+
+<%= link_to 'Edit', edit_aboutsecrad_path(@aboutsecrad) %> |
+<%= link_to 'Back', aboutsecrads_path %>

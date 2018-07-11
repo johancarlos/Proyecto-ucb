@@ -1,0 +1,57 @@
+I"(function() {
+  angular.module("Poll").controller("ResultController", [
+    "$scope", "$interval", "Pusher", function($scope, $interval, Pusher) {
+      $scope.ctx = $('canvas')[0].getContext("2d");
+      $scope.chartData = [];
+      $scope.chartOptions = {
+        responsive: true,
+        showTooltips: false,
+        animationSteps: 45
+      };
+      $scope.updateChart = function() {
+        return $.ajax({
+          url: "/" + $scope.question + "/results.json",
+          success: function(data) {
+            return $scope.$apply(function() {
+              var colors, datum, i, index, j, len, len1, total;
+              if ($scope.chartData.length !== data.length) {
+                colors = color.randomColors(data.length);
+                $scope.chartData = $.extend(true, data, colors);
+              } else {
+                $scope.chartData = $.extend(true, $scope.chartData, data);
+              }
+              total = 0;
+              for (index = i = 0, len = data.length; i < len; index = ++i) {
+                datum = data[index];
+                total += datum.value;
+              }
+              console.log("Total = " + total);
+              if ($scope.chart != null) {
+                console.log('a');
+                for (index = j = 0, len1 = data.length; j < len1; index = ++j) {
+                  datum = data[index];
+                  $scope.chart.segments[index].value = datum.value;
+                }
+                return $scope.chart.update();
+              } else if (total > 0) {
+                console.log('b');
+                return $scope.chart = new Chart($scope.ctx).Doughnut($scope.chartData, $scope.chartOptions);
+              }
+            });
+          }
+        });
+      };
+      return $scope.setQuestion = function(question) {
+        var channel;
+        $scope.question = question;
+        $scope.updateChart();
+        channel = Pusher.subscribe(question);
+        return channel.bind("vote", function() {
+          return $scope.updateChart();
+        });
+      };
+    }
+  ]);
+
+}).call(this);
+:ET

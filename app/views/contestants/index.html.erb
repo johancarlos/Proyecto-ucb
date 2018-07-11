@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contestants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>E-Mail</th>
+      <th>Celular</th>
+      <th>Concurso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contestants.each do |contestant| %>
+      <tr>
+        <td>
+          <%= contestant.name %>
+        </td>
+        <td>
+          <%= contestant.lastname %>
+        </td>
+        <td>
+          <%= contestant.mail %>
+        </td>
+        <td>
+          <%= contestant.cellphone %>
+        </td>
+        <td>
+          <%= contestant.contest.name %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

@@ -1,0 +1,128 @@
+// Place all the styles related to the aboutsecrads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#cardAboutRow{
+    padding-left: 22%;
+}
+.col-lg-9{
+    #about {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
+}
+.cardAbout {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    width: 100%;
+    
+}
+.m-4 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+.card-header-about {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color:#00d8ff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125); 
+    color:white;
+    
+}
+.card-body-about {
+    -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+    padding: 1.25rem;
+    
+}
+#pAb {
+    font-size: 120%;
+    line-height: 150%;
+
+}
+.rowabout{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+}
+#one{
+    height: 40%;
+    width: 100%;
+    margin-bottom: 20px; 
+    position: relative;
+    align-content: center;
+    padding-left: 0%;
+    
+  
+}
+#two
+{
+    height: 60%;
+    margin-bottom: 20px; 
+    position: relative;
+    
+    
+    
+}
+.colll {
+    width: 100%;
+    padding: 3%;
+  
+}
+#col1{
+    width: 33.3333%;
+    float: left;
+    
+}
+#col2{
+    width: 33.3333%;
+    float: left;
+}
+#col3{
+    width: 33.3333%;
+    float: left;
+}
+.card-header-about-form {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color:#65C97C;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125); 
+    color:black;
+    
+}
+.abou {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem
+}
+.abou-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem
+}
+.abou-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #65C97C;
+    border-bottom: 1px solid rgba(0, 0, 0, .125)
+}

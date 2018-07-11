@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+
+  <div class="rowContestant">
+    <div class="col-sm-8">
+    	<div class="well well-sm">
+  			<center>
+  				<h2> <%= @contest.name %> </h2>
+  			</center>
+  		</div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="center" id="cardContestantRow">
+      <div class="colC-lg-9">
+        <div class="cardContestant card-outline-secondary myC-4">
+          <div class="card-body-contestant">
+            <% @contest.contestants.each do |contestant| %>
+              <div class="cardCo">
+                <%if @contest.typeContest=="Imagen" %>
+                  <div class="cardCo-img-top">
+                    <div class="embed-container">
+                      <img alt=""<%= image_tag @contestant.image.thumb.url %>
+                    </div>
+                  </div>
+                <%end%>
+                
+                <%if @contest.typeContest=="Video" %>
+                  <div class="cardCo-img-top">
+                    <div class="embed-container">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=embed(contestant.video)%>" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                <%end%>
+
+                <%if @contest.typeContest=="Audio" %>
+                  <div class="cardCo-img-top">
+                    <div class="embed-container">
+                      <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=embed(contestant.song)%>" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  </div>
+                <%end%>  
+
+                <div class="cardCo-block">
+                  <p> Nombre: <%= contestant.name %> </p>
+                  <p> Apellido: <%= contestant.lastname %> </p>
+                  <p> E-mail: <%= contestant.mail %> </p>
+                  <p> Celular: <%= contestant.cellphone %> </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+
+  <div class="rowContestant">
+  	<div class="col-sm-4">
+  		<br>
+  		<%= link_to 'Atras', contests_path ,:class => 'btn btn-warning active'%>
+  	</div>
+  </div>

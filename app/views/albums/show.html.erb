@@ -1,0 +1,109 @@
+
+<section class="bg-light" id="portfolio">
+
+<div class="container">
+  <% if notice %>
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+  <%end%>
+  <div class="center">
+    <div class="col-lg-12 text-center">
+      <div class="well well-lg">
+        <h2 class="section-heading">
+          <%= @album.name %>
+        </h2>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.manageAlbum? %>
+          <%= link_to 'Agregar Foto', new_album_photo_path(@album),:class=>"btn btn-primary" %>
+          <%= link_to 'Agregar Video', new_album_video_path(@album),:class=>"btn btn-primary" %>
+          <%= link_to 'Editar', edit_album_path(@album) ,:class => 'btn btn-warning' %>
+          <%= link_to 'Ordenar', sort_album_path ,:class => 'btn btn-warning',:"data-turbolinks" => false %>
+        <% end %>
+      <% end %>
+      <div class="text-left">
+      <%= link_to 'Atras', albums_path, :class => 'btn btn-warning'  %>
+      <br>
+      <br>
+    </div>
+</div>
+</div>
+
+<div class="row1">
+  <% @photoShow.each do |photo| %>
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <a class="portfolio-link" data-toggle="modal" >
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+          
+            <i>
+            
+            </i>
+          </div>
+          
+        </div>
+        <img class="img-responsive" alt=""<%= image_tag photo.image.thumb.url %>
+        
+        
+      </a>
+      
+      <div class="portfolio-caption">
+        <h4>
+          <%= photo.name %>
+        </h4>
+        <% if user_signed_in? %>
+          <% if current_user.manageAlbum? %>
+            <!--<td>
+                    <%= link_to 'Editar', edit_album_photo_path(@album,photo),:class => 'btn btn-warning' %>
+            </td>-->
+            <td>
+              <%= link_to 'Eliminar', album_photo_path(@album,photo), method: :delete, data: { confirm: '¿Está seguro que desea eliminar la foto?' }, :class=>'btn btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+        <%= social_share_button_tag(photo.name, :url => "" + request.original_url, :image => "" + request.base_url + photo.image.url, desc: photo.name, via: "SECRAD") %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row1">
+  <% @videoShow.each do |video| %>
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+        <div class="portfolio-hover">
+          <div class="portfolio-hover-content">
+            <i class="fa fa-plus fa-3x"></i>
+          </div>
+        </div>
+        <div class="embed-responsive embed-responsive-4by3">
+          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%=embed(video.link)%>" allowfullscreen></iframe>
+        </div>
+      </a>
+      <div class="portfolio-caption">
+        <h4>
+          <%= video.title %>
+        </h4>
+        <% if user_signed_in? %>
+          <% if current_user.manageAlbum? %>
+            <!--<td>
+              <%= link_to 'Editar', edit_album_video_path(@album,video),:class => 'btn btn-warning' %>
+            </td>-->
+            <td>
+              <%= link_to 'Eliminar', album_video_path(@album,video), method: :delete, data: { confirm: '¿Está seguro que desea eliminar el video?' }, :class=>'btn btn-danger' %>
+            </td>
+          <% end %>
+        <% end %>
+        <div class="jump-line">
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</section>

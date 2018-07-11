@@ -1,0 +1,70 @@
+<%= form_with(model: place, local: true) do |form| %>
+
+
+            <div class="form-group">
+              <%= form.label :Nombre%>
+              <div class="input-group">
+                <%= form.text_area(:name, {:class => 'form-control', :cols => '60', :maxlength => "70"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @place.errors[:name].any? ? @place.errors[:name].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :Imagen %>
+              <div class="input-group">
+                <%= form.file_field :image %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @place.errors[:image].any? ? @place.errors[:image].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :Dirección %>
+              <div class="input-group">
+                <%= form.text_area(:address, {:class => 'form-control', :rows => '2', :cols => '60', :maxlength => "150"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @place.errors[:address].any? ? @place.errors[:address].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+  
+
+            <div class="form-group">
+              <%= form.label :Email %>
+              <div class="input-group">
+                <%= form.text_field(:email, {:class => 'form-control', :maxlength => "150"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @place.errors[:email].any? ? @place.errors[:email].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :Teléfono %>
+              <div class="input-group">
+                <%= form.text_field(:phone, {:class => 'form-control',  :maxlength => "7"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @place.errors[:phone].any? ? @place.errors[:phone].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <%= form.submit "Guardar",:class => 'btn btn-success'%>
+  
+
+<% end %>

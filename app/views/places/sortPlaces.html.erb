@@ -1,0 +1,78 @@
+<% if user_signed_in? %>
+    <% if current_user.manageContact == false %>
+    <script type="text/javascript">
+        window.location.href="/"
+    </script>
+    <% end %>
+<% else %>
+    <script type="text/javascript">
+    window.location.href="/"
+    </script>
+<% end %>
+
+<div class="container">
+<% if notice %>
+    <div class="container">
+    <div class="alert alert-success">
+        <strong>
+        <div style="text-align: center;">
+            <p id="notice">
+            <%= notice %>
+            </p>
+        </div>
+        </strong>
+    </div>
+    </div>
+<%end%>   
+
+<div>
+    <center>
+        <h1>
+            Lugares
+        </h1>
+    </center>
+    <br>
+    </br>
+</div>
+
+<div class="text-left">
+    <%= link_to 'Atras', contacts_path, :class => 'btn btn-warning',:"data-turbolinks" => false  %>
+</div>
+<br>
+
+<% if @places.length ==0 %>
+    <div class="rowMyService">
+        <div class="col-sm-8">
+            <div class="well well-sm">
+            <center>
+            <h2> Aún no existen Lugares </h2>
+            </center>
+            </div>
+        </div>
+    </div>
+<% else %>
+    
+        <table class="table table-bordered">
+            <thead>
+                <th>
+                Nombre
+                </th>
+                <th>
+                Número de orden
+                </th>
+
+            </thead>
+            <tbody class="sortable"> 
+
+                
+                <% sortable_fetch(@places) do |place, id_tag | %>
+                        <tr id="<%= id_tag %>">
+                        <td><%= place.name %></td>
+                        <td><%= place.sort %></td>
+                        
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+<% end %>

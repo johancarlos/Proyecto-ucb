@@ -1,0 +1,44 @@
+<%= form_with(model: service, local: true) do |form| %>
+
+  
+
+            <div class="form-group">
+              <%= form.label :Nombre%>
+              <div class="input-group">
+                <%= form.text_field(:name, {:class => 'form-control', :maxlength => "75"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @service.errors[:name].any? ? @service.errors[:name].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :Imagen %>
+              <div class="input-group">
+                <%= form.file_field :image %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @service.errors[:image].any? ? @service.errors[:image].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <%= form.label :Descripción %>
+              <div class="input-group">
+                <%= form.text_area(:description, {:class => 'form-control',:cols => '60', :rows => '7', :maxlength => "1500"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @service.errors[:description].any? ? @service.errors[:description].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+            </div>
+
+            <%= form.submit "Guardar",:class => 'btn btn-success'%>
+
+ 
+      
+
+<% end %>

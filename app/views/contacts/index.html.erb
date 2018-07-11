@@ -1,0 +1,241 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <center>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </center>
+      </strong>
+    </div>
+  </div>
+<%end%>  
+
+<div>
+  <br>
+  <div class="center" id="centerService_title">
+      <% if user_signed_in? %>
+        <% if current_user.manageContact? %>
+          <div>
+            <div class= "button_index_new">
+              <%= link_to 'Crear Página Web', new_web_page_path, :class=>'btn btn-primary active'  %><br><br>
+              <%= link_to 'Ordenar Páginas Web', sortWebPages_web_pages_path,:class=>"btn btn-primary active",:"data-turbolinks" => false %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+  <div class="container">
+    <% if @web_pages.length ==0 %>
+    <br><br>
+    <div class="col-sm-2">
+    </div> 
+      <div class="col-sm-8">
+        <div class="well well-sm">
+          <center>
+            <h2> Aún no existen Páginas Web o Redes Sociales </h2>
+          </center>
+        </div>
+    </div>  
+    
+    <% else %>
+      
+      <% if user_signed_in? %>
+        <% if current_user.manageContact? %>
+          <section id ="sectionNetwork">
+            <% @web_pages.each do |web_page| %>
+              <div class="redeAdmin">
+                <a href= <%= web_page.link %>  target="_blank" >
+                  <img class="icone" <%= image_tag web_page.image.socialNetworks.url %>
+                </a> 
+                <td><%= link_to 'Editar', edit_web_page_path(web_page),:class => 'btn btn-warning' %></td>
+                <td><%= link_to 'Eliminar', web_page, method: :delete, data: { confirm: '¿Está seguro que desea eliminar la página web?' }, :class=>'btn btn-danger' %></td>
+              </div>
+            <% end %>
+          </section>
+        <% else %>
+          <section id ="sectionNetwork">
+            <% @web_pages.each do |web_page| %>
+              <div class="rede">
+                <a href= <%= web_page.link %>  target="_blank" >
+                  <img class="icone" <%= image_tag web_page.image.socialNetworks.url %>
+                </a> 
+                </div>
+            <% end %>
+          </section>  
+        <% end %>
+      <% else %>
+        <section id ="sectionNetwork">
+          <% @web_pages.each do |web_page| %>
+            <div class="rede">
+              <a href= <%= web_page.link %>  target="_blank" >
+                <img class="icone" <%= image_tag web_page.image.socialNetworks.url %>
+              </a> 
+              </div>
+          <% end %>
+        </section> 
+      <% end %>
+      
+    <% end %>
+  </div>
+
+
+
+  <div class="center" id="centerService_title">
+    <% if user_signed_in? %>
+      <% if current_user.manageContact? %>
+        <div>
+          <div class= "button_index_new">
+            <%= link_to 'Crear Contacto', new_contact_path, :class=>'btn btn-primary active' %><br><br>
+            <%= link_to 'Ordenar Contactos', sortContacts_contacts_path,:class=>"btn btn-primary active",:"data-turbolinks" => false %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="container">
+    <% if @contacts.length ==0 %>
+    <br><br>
+      <div class="col-sm-2">
+      </div> 
+      <div class="col-sm-8">
+        <div class="well well-sm">
+          <center>
+          <h2> Aún no existe Personal de Contacto </h2>
+          </center>
+        </div>
+      </div>
+    <% else %>
+        <div class="container">
+
+          <div class="row" id="cardContactRow">
+
+            <div class="col-lg-9">
+                <div class="cardContact card-outline-secondary my-4">
+                          <div class="card-header-contact">
+                          <center>
+                          <h3> Nuestro Personal de Contacto </h3>
+                          </center>
+                          </div>
+                          <div class="card-body-contact">
+                            <% @contacts.each do |contact| %>
+                                
+                                <p> <strong> <%= contact.area %> </strong> </p>
+                                <p> <%= contact.name %> </p>
+                                <p> E-mail: <%= contact.email %> </p>
+                                <% if contact.cellPhone != nil %>
+                                  <p> Celular: <%= contact.cellPhone %> </p>
+                                <% end %>
+                                
+                                <p> Interno: <%= contact.inter %> </p>
+                                <% if user_signed_in? %>
+                                  <% if current_user.manageContact? %>
+                                <%= link_to 'Ver', contact, method: :get, :class=>'btn btn-info' %>
+                                
+                                    <%= link_to 'Editar', edit_contact_path(contact), :class=>'btn btn-warning' %>
+                                    <%= link_to 'Eliminar', contact, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el contacto?' }, :class=>'btn btn-danger' %>
+                                  <% end %>   
+                                <% end %>
+                                
+                                <hr style = "padding-left: 50%; border-color: #c3c3c3;">
+                              
+                            <% end %>
+                            
+                          </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+
+  <br><br>
+
+
+  <div class="center" id="centerService_title">
+    <% if user_signed_in? %>
+      <% if current_user.manageContact? %>
+        <div>
+          <div class= "button_index_new">
+            <%= link_to 'Crear Lugar', new_place_path, :class=>'btn btn-primary active'  %><br><br>
+            <%= link_to 'Ordenar Lugares', sortPlaces_places_path,:class=>"btn btn-primary active",:"data-turbolinks" => false %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="container">
+    <center>
+      <h1>
+      Lugares 
+      </h1>
+    </center>
+    <br>
+    <% if @places.length ==0 %>
+      <div class="col-sm-2">
+      </div> 
+      <div class="col-sm-8">
+        <div class="well well-sm">
+          <center>
+          <h2> Aún no existen Lugares </h2>
+          </center>
+        </div>
+      </dvi>
+    <% else %>
+        <!-- Page Content -->
+        <div class="container">
+        <div class="row" id="cardPlace">
+          <% @places.each do |places| %>
+            <div class="col-md-4 mb-4">
+              <div class="cardServcie h520">
+
+                  <div class="view overlay hm-white-slight">
+                    <% if places.image_url.to_s != nil %>
+                    <img class="img-responsive" alt="" <%= image_tag places.image_url(:thumb).to_s %>
+                    <% else %>
+                        <img src="https://www.ebosscanada.com/wp-content/uploads/2016/07/00_Slider_02.jpg" class="img-fluid" alt="" style="width:100%">
+                        
+                    <% end %>
+                  </div>
+
+                <div class="cardService-body">
+                  
+                    <center>
+                    <h4 class="cardService-title"><%= places.name %></h4>
+                    </center>
+                    <hr style = "padding-left: 50%; border-color: #c3c3c3;">
+                
+                  
+                    <p class="cardService-text"><%= places.address %></p>
+                    <br>
+                    <% if places.email != '' %>
+                    <p> <b> E-mail: </b> <%= places.email %> </p>
+                    <% end %>
+                    <% if places.phone != nil %>
+                      <p> <b> Teléfono: </b><%= places.phone %> </p>
+                    <% end %>
+                
+                
+                </div>
+                <div class="cardService-footer">
+                  
+                  <% if user_signed_in? %>
+                    <% if current_user.manageContact? %>
+                      <%= link_to 'Editar', edit_place_path(places), :class=>'btn btn-warning' %>
+                      <%= link_to 'Eliminar', places, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el lugar?' }, :class=>'btn btn-danger' %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    <% end %>
+  </div>
+</div>

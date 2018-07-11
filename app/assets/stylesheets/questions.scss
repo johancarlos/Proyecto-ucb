@@ -1,0 +1,51 @@
+// Place all the styles related to the Questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#Ques{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#left{
+    padding-left: 10%;
+}
+#left2{
+    padding-left: 40%;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    width: 100%;
+}
+.ques {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem
+}
+.ques-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem
+}
+.ques-header {
+    overflow-x: scroll;
+    
+    white-space: nowrap;
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+   
+}

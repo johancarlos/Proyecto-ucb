@@ -1,0 +1,32 @@
+<%= form_with(model: web_page, local: true) do |form| %>
+
+
+          <div class="form-group">
+              <%= form.label :Imagen %>
+              <div class="input-group">
+                <%= form.file_field :image %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @web_page.errors[:image].any? ? @web_page.errors[:image].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+          </div>
+
+
+          <div class="form-group">
+              <%= form.label :"URL o Enlace" %>
+              <div class="input-group">
+                <%= form.text_area(:link, {:class => 'form-control', :cols => '60', :maxlength => "400"}) %>
+                <%#Obtener solo el mensaje con la expresion regular /\w([^]*)/%>
+                <div style = "color: red;">
+                  <%= @web_page.errors[:link].any? ? @web_page.errors[:link].to_s[/\w([^"]*)/] : "" %>
+                </div>
+              </div>
+          </div>
+  
+
+  
+          <%= form.submit "Guardar",:class => 'btn btn-success'%>
+
+ 
+<% end %>

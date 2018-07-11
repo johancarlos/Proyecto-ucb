@@ -1,0 +1,81 @@
+<% if user_signed_in? %>
+<% if current_user.manageAlbum == false %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<% else %>
+<script type="text/javascript">
+window.location.href="/"
+</script>
+<% end %>
+<div class="container">
+<% if notice %>
+<div class="container">
+  <div class="alert alert-success">
+    <strong>
+      <div style="text-align: center;">
+        <p id="notice">
+          <%= notice %>
+        </p>
+      </div>
+    <strong>
+  </div>
+</div>
+<%end%>   
+
+<div class="center" id="centerAlbum_title">
+<h1>
+  Albumes
+</h1>
+<br>
+<% if user_signed_in? %>
+  <% if current_user.manageAlbum? %>
+    
+  <% end %>
+<% end %>
+</br>
+</div>
+
+<div class="text-left">
+<%= link_to 'Atras', albums_path, :class => 'btn btn-warning',:"data-turbolinks" => false  %>
+</div>
+<br>
+<% if @albums.length ==0 %>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="well well-sm">
+      <center>
+      <h2> 
+        Aún no existen Albumes 
+      </h2>
+      </center>
+    </div>
+  </div>
+</div>
+<% else %>
+    
+        <table class="table table-bordered">
+            <thead>
+                <th>
+                Nombre
+                </th>
+                <th>
+                Número de orden
+                </th>
+
+            </thead>
+            <tbody class="sortable"> 
+
+                
+                <% sortable_fetch(@albums) do |album, id_tag | %>
+                        <tr id="<%= id_tag %>">
+                        <td><%= album.name %></td>
+                        <td><%= album.sort %></td>
+                        
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+<% end %>

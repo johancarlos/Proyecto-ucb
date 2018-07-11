@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  progration: MyString
+  schedule: 2017-11-02 18:08:36
+  details: MyString
+  datte: 2017-11-02
+
+two:
+  progration: MyString
+  schedule: 2017-11-02 18:08:36
+  details: MyString
+  datte: 2017-11-02

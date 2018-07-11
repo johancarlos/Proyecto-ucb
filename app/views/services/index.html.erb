@@ -1,0 +1,60 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <center>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </center>
+      </strong>
+    </div>
+  </div>
+<%end%>  
+
+<div>
+<center>
+  <h1> Servicios </h1>
+</center>
+</div>
+
+<div class="center" id="centerService_title">
+
+  <% if user_signed_in? %>
+    <% if current_user.manageService? %>
+      
+      <div class= "button_index_new">
+          <%= link_to 'Crear Servicio', new_service_path, :class=>'btn btn-primary active' %><br><br>
+          <%= link_to 'Ordenar Servicios', sortServices_services_path,:class=>"btn btn-primary active",:"data-turbolinks" => false %>
+      </div>
+      
+    <% end %>
+  <% end %>
+</div>
+
+<% @controladorServicesShow = true %>
+
+<% if @services.length ==0 %>
+<br>
+<br><br><br><br>
+  <div class="rowMyService">
+    <div class="col-sm-8">
+      <div class="well well-sm">
+        <center>
+        <h2> Aún no existen Servicios </h2>
+        </center>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <% if user_signed_in? %>
+    <% if current_user.manageService? %>
+      <br><br><br><br>
+    <% end %>
+  <% end %>
+  <br>
+  <div id="services">
+    <%= render @services %>
+  </div>
+<% end %>
+<%= will_paginate @services %>

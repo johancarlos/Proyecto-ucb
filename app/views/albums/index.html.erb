@@ -1,0 +1,90 @@
+<div class="container">
+<% if notice %>
+  
+    <div class="alert alert-success">
+      <strong>
+        <div style="text-align: center;">
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </div>
+      <strong>
+    </div>
+  
+<%end%>   
+
+<div class="text-center" >
+  <h1 >
+    Albumes
+  </h1>
+  <br>
+  <% if user_signed_in? %>
+    <% if current_user.manageAlbum? %>
+    
+        <%= link_to 'Agregar Álbum', new_album_path,:class=>"btn btn-primary" %>
+        <%= link_to 'Ordenar Álbum', sortAlbums_albums_path,:class=>"btn btn-primary",:"data-turbolinks" => false %>
+      
+    <% end %>
+  <% end %>
+  </br>
+</div>
+<br>
+<br>
+<br>
+<% if @albums.length ==0 %>
+  <div class="rowA">
+    <div class="col-sm-8">
+      <div class="well well-sm">
+        <center>
+        <h2> 
+          Aún no existen Albumes 
+        </h2>
+        </center>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div >
+    <div>
+      <% @albums.each do |album| %>
+        <div class="col-md-4 mb-4">
+          <div class="cardAlbum">
+            <div class="cardAlbum-body">
+              <h2 class="cardAlbum-title">
+                <%= album.name%>
+              </h2>
+              <%if album.photos.count==0%>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1P9vXN4QO5oGlFR0cU9o83bMjQB-2jZeQiqWAQE1_TBh3JLhxag" alt="Norway" style="width:100%">
+              <%else%>
+
+                <div class="text-center">
+                  <img alt="else" style="width:80%" <%= image_tag album.photos.first.image.thumb.url%>
+
+                </div>
+              <%end%>
+              <div class="cardAlbum-footer">
+                <td>
+                  <%= link_to 'Ver Album', album, :class=>'btn btn-info' %>
+                </td>
+                <% if user_signed_in? %>
+                  <% if current_user.manageAlbum? %>
+                    <td>
+                      <%= link_to 'Eliminar Album', album, method: :delete, data: { confirm:  '¿Esta seguro que desea eliminar el Album?' },:class=>'btn btn-danger' %>
+                    </td>
+                  <% end %>
+                <% end %>
+
+                <%if album.photos.count!=0%>
+                  <%= social_share_button_tag(album.name, :url => "" + request.original_url + "/" + album.id.to_s, :image => "" + request.base_url + album.photos.first.image.url , desc: album.name) %>
+                <% else %>
+                  <%= social_share_button_tag(album.name, :url => "" + request.original_url + "/" + album.id.to_s, :image => "" , desc: album.name) %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

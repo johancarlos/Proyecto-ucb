@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <% if current_user.manageAboutsecrad == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<h1>
+  New Aboutsecrad
+</h1>
+
+<%= render 'form', aboutsecrad: @aboutsecrad %>
+
+<%= link_to 'Back', aboutsecrads_path %>

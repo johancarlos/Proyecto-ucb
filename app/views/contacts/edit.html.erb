@@ -1,0 +1,31 @@
+<% if user_signed_in? %>
+  <% if current_user.manageContact == false %>
+    <script type="text/javascript">
+      window.location.href="/"
+    </script>
+  <% end %>
+<% else %>
+  <script type="text/javascript">
+    window.location.href="/"
+  </script>
+<% end %>
+<br><br><br>
+<div class = "container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-center">
+            <h2> Editar Contacto </h2>
+          </div>
+
+            <%= render 'form', contact: @contact %>
+
+            <br>
+            <%= link_to 'Atras', contacts_path ,:class => 'btn btn-warning active'%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

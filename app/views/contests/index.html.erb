@@ -1,0 +1,113 @@
+<% if notice %>
+  <div class="container">
+    <div class="alert alert-success">
+      <strong>
+        <center>
+          <p id="notice">
+            <%= notice %>
+          </p>
+        </center>
+      </strong>
+    </div>
+  </div>
+<%end%>  
+
+
+
+    <div>
+      <center>
+          <h1>
+            Concursos
+          </h1>
+      </center>
+    </div>
+
+    <div class="center" id="centerService_title">
+      <% if user_signed_in? %>
+        <% if current_user.manageContest? %>
+          <div class= "button_index_new">
+              <%= link_to 'Crear Concurso', new_contest_path, :class=>'btn btn-primary active' %> <br> <br>
+              <%= link_to 'Ordenar Concursos', sortContests_contests_path,:class=>"btn btn-primary active",:"data-turbolinks" => false %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+
+
+<% if @contests.length ==0 %>
+<br>
+<br><br><br><br>
+  <div class="rowMyService">
+    <div class="col-sm-8">
+      <div class="well well-sm">
+        <center>
+        <h2> Aún no existen Concursos </h2>
+        </center>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <% if user_signed_in? %>
+    <% if current_user.manageContest? %>
+      <br><br><br><br>
+    <% end %>
+  <% end %>
+  <br>
+  <!-- Page Content -->
+    <div class="containerContest">    
+
+      <% @contests.each do |contest| %>
+        <div class="rowContest">
+          <div class="col-md-7">
+            <img class="img-fluid rounded mb-3 mb-md-0" alt="" <%= image_tag contest.image_url(:contestsIndex).to_s %>
+          </div>
+          <div class="col-md-5">
+
+            <% if contest.name.length > 52 %>
+              <h2 > <%= truncate(contest.name, length: 52) %> </h2>
+            <% else %>
+              <h2 > <%= contest.name %></h2>
+            <% end %>
+            
+            <%if contest.contest_winner.to_s.length != 0%>
+              <h3 >Ganador: <%= contest.contest_winner %></h3>
+            <% else %>
+              
+            <% end %>
+
+            <p> Concuro de  <%= contest.typeContest %> </p>
+
+            <hr style = "padding-left: 100%; border-color: #c3c3c3;">
+            
+            <% if contest.description.length > 580 %>
+              <p > <%= truncate(contest.description, length: 580, separator: ' ') %> </p>
+            <% else %>
+              <p > <%= simple_format (contest.description) %></p>
+            <% end %>
+            
+
+          </div>
+        </div>
+        <div class="rowBotonesContests">
+            <div class="cardService-footer-b">
+                <%= link_to 'Ver mas', contest, method: :get, :class=>'btn btn-info' %>
+                <% if user_signed_in? %>
+                  <% if current_user.manageContest? %>
+                    <%= link_to 'Editar', edit_contest_path(contest), :class=>'btn btn-warning' %>
+                    <%= link_to 'Eliminar', contest, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el concurso?' }, :class=>'btn btn-danger' %>
+                  <% end %>
+                <% end %>
+            </div>
+        </div>
+        <hr class="divider">
+        <br>
+        <br>
+        <br>
+      <% end %>
+    </div>
+    <!-- /.container -->
+
+<% end %>
